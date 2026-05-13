@@ -6,71 +6,56 @@ demo: ./demo.md
 
 # card.md — Lớp kiến trúc dữ liệu
 
-**Tình huống xử lý**: T-__  
-Xem `../../1-map-and-format.md` Phần A.
-
----
+**Tình huống xử lý**: T-01, T-02, T-07, T-10, T-11, T-12
 
 ## 1. Giải pháp là gì?
 
-[Viết 2-3 câu. Nói rõ hệ thống cần thêm nguồn dữ liệu, bước kiểm tra, cách chuyển câu hỏi hoặc cách ghi lại lỗi nào.]
-
-Ví dụ:
-
-> Với câu hỏi về học bổng, hệ thống phải tra nguồn tuyển sinh chính thức trước khi AI trả lời. Nếu nguồn không có dữ liệu hoặc bị lỗi, AI không được đoán mà chuyển câu hỏi cho tư vấn viên.
-
----
+Thêm pipeline `file ingest -> OCR/parser -> quality check -> evidence extraction -> policy/rule engine -> response builder -> logging`. Hệ thống chỉ cho phép summary/suggestion screening khi claim quan trọng có evidence và confidence đủ ngưỡng. Đồng thời bổ sung consent gate cho batch import, PII redaction cho shared notes, và injection screening cho nội dung CV.
 
 ## 2. Vì sao sửa ở lớp kiến trúc dữ liệu?
 
-[Chọn 1-2 ý đúng với giải pháp của nhóm.]
-
-- Nguyên nhân chính là thiếu nguồn đúng hoặc nguồn cũ.
-- AI đang phải tự nhớ thông tin thay vì đọc từ nguồn đáng tin cậy.
-- Cần kiểm tra dữ liệu trước khi câu trả lời được tạo ra.
-- Cần ghi lại lỗi để nhóm biết lỗi nào lặp lại nhiều.
+- Nhiều lỗi của Track 7 không bắt đầu ở câu chữ mô hình mà ở input quality, metadata thiếu, hoặc workflow gate thiếu.
+- Nếu architecture không tạo evidence spans và confidence signal, prompt/UI sẽ không có vật liệu để chặn lỗi thật sự.
 
 **Hành động phòng vệ chính**:
 
-- [ ] Ngăn lỗi bằng nguồn dữ liệu đúng
-- [ ] Phát hiện khi nguồn thiếu hoặc lỗi
-- [ ] Khắc phục bằng cách chuyển sang người thật
-- [ ] Ghi lại lỗi để cải thiện sau
-
----
+- [x] Ngăn lỗi bằng nguồn dữ liệu đúng
+- [x] Phát hiện khi nguồn thiếu hoặc lỗi
+- [x] Khắc phục bằng cách chuyển sang người thật
+- [x] Ghi lại lỗi để cải thiện sau
 
 ## 3. Demo nằm ở đâu?
 
 **File demo**: [`demo.md`](./demo.md)
 
-Demo cần có:
+Demo có:
 
-- Sơ đồ cách dữ liệu đi qua hệ thống
-- Nguồn dữ liệu chính thức
-- Bước kiểm tra trước khi AI trả lời
-- Cách xử lý khi nguồn thiếu, lỗi hoặc quá cũ
-- Cách ghi lại hoặc theo dõi lỗi
-
----
+- Data flow của CV/JD
+- Parser/OCR quality gate
+- Evidence store cho từng claim
+- Policy engine cho consent, PII, protected/proxy requests, injection
+- Manual-review queue và monitoring log
 
 ## 4. Tác dụng phụ
 
 **Có thể gây vấn đề gì?**
 
-[Ví dụ: trả lời chậm hơn, phụ thuộc vào nguồn dữ liệu, tốn công duy trì, hệ thống phức tạp hơn.]
+- Tăng latency vì phải OCR, extract, và run rule engine.
+- Tăng complexity vận hành và nhu cầu tuning threshold.
+- Có thể tạo nhiều manual review hơn trong giai đoạn đầu.
 
 **Nhóm giảm vấn đề đó bằng cách nào?**
 
-[Ví dụ: lưu tạm dữ liệu phổ biến, có thông báo khi nguồn lỗi, đặt người phụ trách cập nhật nguồn, giới hạn chỉ áp dụng với câu hỏi rủi ro cao.]
-
----
+- Chỉ bật gate mạnh với high-impact actions như shortlist/export/reject support.
+- Cache parser/evidence theo candidate version.
+- Theo dõi false positive của gate để tinh chỉnh threshold thay vì mở gate quá lỏng.
 
 ## 5. Checklist trước khi nộp
 
-- [ ] Sơ đồ cho thấy dữ liệu đi từ đâu đến đâu.
-- [ ] Có bước kiểm tra nguồn trước khi AI trả lời.
-- [ ] Có cách xử lý khi không có dữ liệu.
-- [ ] Có cách chuyển sang người thật với tình huống rủi ro cao.
-- [ ] Có cách biết lỗi này có đang lặp lại không.
+- [x] Sơ đồ cho thấy dữ liệu đi từ đâu đến đâu.
+- [x] Có bước kiểm tra nguồn trước khi AI trả lời.
+- [x] Có cách xử lý khi không có dữ liệu.
+- [x] Có cách chuyển sang người thật với tình huống rủi ro cao.
+- [x] Có cách biết lỗi này có đang lặp lại không.
 
-**Người phụ trách**: [Tên thành viên]
+**Người phụ trách**: Hồ Hải Thuận

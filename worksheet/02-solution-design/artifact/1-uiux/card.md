@@ -6,77 +6,54 @@ demo: ./demo.md
 
 # card.md — Lớp giao diện
 
-**Tình huống xử lý**: T-__  
-Xem `../../1-map-and-format.md` Phần A.
-
----
+**Tình huống xử lý**: T-01 và T-07
 
 ## 1. Giải pháp là gì?
 
-[Viết 2-3 câu. Nói rõ màn hình sẽ thay đổi gì để giảm rủi ro.]
-
-Ví dụ:
-
-> Khi AI trả lời về hạn nộp học bổng, giao diện hiện nhãn “Đã kiểm tra từ nguồn chính thức” hoặc “Chưa có nguồn xác minh”. Nếu thiếu nguồn, màn hình hiện nút chuyển cho tư vấn viên.
-
----
+Thay vì hiển thị một khối summary trôi chảy và score lớn ở đầu màn hình, giao diện sẽ hiển thị từng claim kèm evidence span, OCR confidence, và trạng thái `Đã xác minh` / `Cần review tay`. Nếu recruiter định export shortlist chỉ theo score AI, hệ thống mở modal bắt xác nhận coverage bucket thấp và nhắc người dùng mở CV gốc trước khi tiếp tục.
 
 ## 2. Vì sao sửa ở lớp giao diện?
 
-[Chọn 1-2 ý đúng với giải pháp của nhóm.]
-
-- Người dùng dễ tin câu trả lời của AI quá mức.
-- Rủi ro xảy ra ở khoảnh khắc người dùng đọc câu trả lời.
-- Giao diện cần làm rõ: thông tin nào đã kiểm tra, thông tin nào chưa chắc.
-- Nếu prompt hoặc dữ liệu vẫn sót lỗi, giao diện là lớp chặn cuối.
+- Over-reliance xảy ra ở đúng khoảnh khắc recruiter nhìn score và quyết định có mở CV gốc hay không.
+- Khi prompt hoặc OCR vẫn còn sai sót, UI là lớp cuối có thể giảm hại bằng cách làm uncertainty trở nên thấy được.
 
 **Hành động phòng vệ chính**:
 
-- [ ] Thông báo rõ giới hạn
-- [ ] Phát hiện dấu hiệu thiếu nguồn
-- [ ] Chuyển người thật khi cần
-- [ ] Giúp người dùng kiểm tra lại nguồn
-
----
+- [x] Thông báo rõ giới hạn
+- [x] Phát hiện dấu hiệu thiếu nguồn
+- [x] Chuyển người thật khi cần
+- [x] Giúp người dùng kiểm tra lại nguồn
 
 ## 3. Demo nằm ở đâu?
 
 **File demo**: [`demo.md`](./demo.md)
 
-**Định dạng demo**:
+Demo thể hiện:
 
-- [ ] Phác thảo màn hình
-- [ ] Luồng màn hình
-- [ ] Bản HTML đơn giản
-- [ ] Ảnh hoặc link prototype
-
-**Thành phần cần có trong demo**:
-
-- Trạng thái có nguồn xác minh
-- Trạng thái chưa có nguồn xác minh
-- Cách người dùng chuyển sang người thật
-- Câu chữ cảnh báo ngắn, dễ hiểu
-
----
+- Score không đứng một mình, phải đi cùng evidence
+- Banner low-confidence khi OCR/parser yếu
+- Nút `Mở CV gốc` và `Manual review`
+- Modal chặn export shortlist chỉ theo AI score
 
 ## 4. Tác dụng phụ
 
 **Có thể gây vấn đề gì?**
 
-[Ví dụ: màn hình rối hơn, người dùng thấy bị làm phiền, thao tác chậm hơn.]
+- Recruiter thấy thêm friction và cảm giác hệ thống “chậm hơn”.
+- Màn hình dễ rối nếu hiển thị mọi claim cùng lúc.
 
 **Nhóm giảm vấn đề đó bằng cách nào?**
 
-[Ví dụ: chỉ hiện cảnh báo khi câu trả lời có rủi ro cao; dùng nhãn ngắn; đưa chi tiết vào nút mở rộng.]
-
----
+- Chỉ bật friction mạnh với task high-impact như shortlist/export.
+- Mặc định chỉ mở 2-3 claim quan trọng nhất; phần còn lại để `Xem thêm`.
+- Banner low-confidence chỉ hiện khi thật sự có parser/OCR issue hoặc missing-evidence.
 
 ## 5. Checklist trước khi nộp
 
-- [ ] Giải pháp gắn đúng với một rủi ro chính.
-- [ ] Demo nhìn vào là hiểu vấn đề được chặn ở đâu.
-- [ ] Có đủ trạng thái bình thường và trạng thái lỗi.
-- [ ] Có cách chuyển sang người thật khi AI không nên tự xử lý.
-- [ ] Câu chữ trong giao diện ngắn, không đổ hết trách nhiệm cho người dùng.
+- [x] Giải pháp gắn đúng với rủi ro chính.
+- [x] Demo nhìn vào là hiểu vấn đề được chặn ở đâu.
+- [x] Có đủ trạng thái bình thường và trạng thái lỗi.
+- [x] Có cách chuyển sang người thật khi AI không nên tự xử lý.
+- [x] Câu chữ trong giao diện ngắn, không đổ hết trách nhiệm cho người dùng.
 
-**Người phụ trách**: [Tên thành viên]
+**Người phụ trách**: Vũ Quang Phúc
