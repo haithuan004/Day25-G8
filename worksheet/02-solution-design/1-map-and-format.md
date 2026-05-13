@@ -1,230 +1,129 @@
 ---
-artifact: 1 — FINAL kế hoạch giải pháp
-bai-tap: 2 — Thiết kế giải pháp
-phase: Chọn rủi ro + chọn tầng + chọn demo + chốt 3 lớp giải pháp
+artifact: 1 - FINAL ke hoach giai phap
+bai-tap: 2 - Thiet ke giai phap
+phase: Chon rui ro + chon tang + chon demo + chot 3 lop giai phap
 time: 11:00-11:55
 input: 00-context.md + 01-test-set-review/3-FINAL-test-set-eval-plan.md
-nop-cuoi: Có — file cuối Bài 2
+nop-cuoi: Co - file cuoi Bai 2
 ---
 
-# 1 — FINAL: Kế hoạch giải pháp
+# 1 - FINAL: Ke hoach giai phap
 
-File này ghi lại quyết định chính của Bài 2:
+## Thong tin nhom
 
-- Rủi ro nào được chọn.
-- Vì sao rủi ro đó quan trọng.
-- Nguyên nhân gốc là gì.
-- Nhóm sẽ xây 3 lớp giải pháp nào.
-- Mỗi lớp dùng demo gì.
+- **Chu de**: Track 7 - Tro ly sang loc CV va tuyen dung
+- **Thanh vien**: Vu Quang Phuc - 2A202600346
+- **Ngay**: 2026-05-13
 
-Lý do cần 3 lớp: một giải pháp đơn lẻ dễ lọt lỗi. Với rủi ro nặng, nhóm cần nhiều lớp cùng đỡ: lớp này ngăn, lớp kia phát hiện, lớp khác khắc phục hoặc thông báo cho người dùng.
+## Phan A - Chon rui ro va tang giai phap
 
-Ba lớp giải pháp nằm trong thư mục `artifact/`:
+### Rui ro chinh duoc chon
 
-| Lớp | Thư mục | Vai trò |
+- **ID tinh huong**: T-01
+- **Mo ta ngan**: Khi recruiter can loc nhanh CV scan mo ho hoac CV parse loi, AI co xu huong suy dien them ky nang/so nam kinh nghiem thay vi chi bam vao bang chung co san, gay shortlist/reject sai cho ung vien.
+- **Muc do**: Nang
+- **Diem rui ro**: 25
+- **Vi sao chon tinh huong nay**: Day la failure trung tam cua Track 7 vi no xay ra ngay diem bat dau workflow screening, co the gay loai oan ung vien tot, va de bi che giau boi cau van rat tu tin cua AI.
+
+### Tim nguyen nhan goc
+
+- [x] Thieu nguon du lieu dung.
+- [x] AI doan khi khong biet.
+- [x] Giao dien khien nguoi dung tin qua muc.
+- [x] Quy trinh thieu nguoi duyet hoac thieu buoc chuyen sang nguoi that.
+- [x] Khong co theo doi sau khi ra mat.
+- [ ] Khac
+
+### Bang noi nguyen nhan voi tang sua
+
+| Nguyen nhan goc | Tang uu tien sua | Lop giai phap lien quan |
 |---|---|---|
-| Giao diện | `artifact/1-uiux/` | Cảnh báo, dẫn nguồn, nút chuyển sang người thật |
-| Chỉ dẫn AI | `artifact/2-prompt/` | Hỏi lại, từ chối, bắt buộc dẫn nguồn |
-| Kiến trúc dữ liệu | `artifact/3-architecture/` | Tra cứu nguồn đúng, lưu tạm dữ liệu, xử lý khi thiếu nguồn, giám sát |
+| CV parse loi, OCR thieu, link portfolio khong doc duoc | Du lieu / traceability / confidence gate | `3-architecture` la chinh |
+| Model co xu huong lap cho trong bang suy dien "cho huu ich" | System prompt + evidence-bound output rule | `2-prompt` la chinh |
+| Summary duoc hien thi gon va rat tu tin trong ATS | UX trust calibration + claim-level evidence | `1-uiux` la chinh |
+| Recruiter dang gap va muon shortcut | Prompt refusal + UI manual review CTA | `1-uiux` + `2-prompt` |
+| Loi lap lai nhieu lan nhung khong ai thay pattern | Logging + audit + re-test loop | `3-architecture` la chinh |
 
-Ba lớp này bổ sung cho nhau. Nếu một lớp lọt lỗi, lớp khác vẫn có thể chặn hoặc giảm hại.
+### Ket luan Phan A
 
-## Thông tin nhóm
+**Nguyen nhan goc**: He thong chua ep AI bam sat bang chung o muc claim-level. Khi CV mo ho, parser loi, hoac nguon phu khong doc duoc, model van co dong luc "lap day cho trong" de giup recruiter loc nhanh. UI lai hien summary qua gon va tu tin, khien recruiter de bo qua CV goc. Cuoi cung, workflow chua co confidence gate va manual-review queue ro rang.
 
-- **Chủ đề**: [...]
-- **Thành viên**: [...]
-- **Ngày**: 2026-05-13
+**Tang chinh can sua**: Du lieu/architecture la tang goc, sau do den prompt policy, va UI la lop can cuoi de giam over-reliance.
 
----
+**Vi sao can 3 lop giai phap**:
 
-## Phần A — Chọn rủi ro và tầng giải pháp
+- Lop giao dien: can lam recruiter thay bang chung, uncertainty, va lo trinh chuyen sang review tay.
+- Lop chi dan AI: can cam AI bịa/suy dien khi khong co bang chung, va bat buoc dung wording dung muc tin cay.
+- Lop kien truc du lieu: can tao evidence spans, confidence gate, va fallback khi parser/nguon loi.
 
-### Rủi ro chính được chọn
+## Phan B - Chon dinh dang demo
 
-- **ID tình huống**: T-__
-- **Mô tả ngắn**: Khi [...], AI có xu hướng [...], gây [...] cho [...]
-- **Mức độ**: [Nặng / Vừa]
-- **Điểm rủi ro**: [...]
-- **Vì sao chọn tình huống này**: [...]
-
-### Tìm nguyên nhân gốc
-
-Đừng chỉ mô tả lỗi. Hãy trả lời: vì sao lỗi xảy ra?
-
-- [ ] Thiếu nguồn dữ liệu đúng.
-- [ ] AI đoán khi không biết.
-- [ ] Giao diện khiến người dùng tin quá mức.
-- [ ] Quy trình thiếu người duyệt hoặc thiếu bước chuyển sang người thật.
-- [ ] Không có theo dõi sau khi ra mắt.
-- [ ] Khác: [...]
-
-### Bảng nối nguyên nhân với tầng sửa
-
-| Nguyên nhân gốc | Tầng ưu tiên sửa | Lớp giải pháp liên quan |
-|---|---|---|
-| Thiếu nguồn đúng | Dữ liệu / tra cứu nguồn (RAG) / chính sách nguồn | `3-architecture` là chính |
-| AI đoán bừa | Chỉ dẫn hệ thống / quy tắc từ chối / dẫn nguồn | `2-prompt` là chính |
-| Người dùng tin quá mức | Giao diện cảnh báo / cách viết mức tin cậy | `1-uiux` là chính |
-| Tình huống nhạy cảm | Người duyệt / chuyển sang người thật | `1-uiux` + `2-prompt` + `3-architecture` |
-| Lỗi lặp lại sau khi ra mắt | Theo dõi / vòng phản hồi | `3-architecture` là chính |
-
-Nguyên tắc: lỗi ở tầng nào, ưu tiên sửa ở tầng đó. Đừng chỉ thêm cảnh báo giao diện nếu nguyên nhân gốc là thiếu nguồn dữ liệu hoặc AI đoán khi không biết.
-
-### 10 tầng giải pháp tham khảo
-
-Không bắt buộc dùng đủ 10 tầng. Bảng này giúp nhóm chọn đúng hướng sửa.
-
-| Tầng | Khi nào dùng |
-|---|---|
-| Giao diện | Người dùng tin AI quá mức, thiếu cảnh báo, thiếu nguồn, thiếu nút chuyển sang người thật |
-| Chỉ dẫn AI | AI đoán khi không biết, không hỏi lại, không từ chối |
-| Quy trình xử lý | Cần phân loại ý định, chuyển đúng nơi xử lý, có cách xử lý khi AI không nên trả lời |
-| Dữ liệu / tra cứu nguồn (RAG) | Thiếu nguồn đúng, nguồn cũ, AI không dựa vào nguồn đáng tin cậy |
-| Theo dõi | Lỗi lặp lại sau khi ra mắt nhưng không ai thấy |
-| Chính sách / thông báo giới hạn | Người dùng không biết giới hạn của AI |
-| Người duyệt / phê duyệt | Tình huống pháp lý, y tế, tài chính, tuyển dụng, hoặc tác động lớn |
-| Vai trò trách nhiệm | Có cảnh báo nhưng không ai chịu trách nhiệm xử lý |
-| Vòng phản hồi | Cần người dùng / người rà báo lỗi để cập nhật hệ thống |
-| Kiến trúc lai | LLM một mình không đủ, cần rule, classifier, hoặc nhiều bước kiểm tra |
-
-### 4 hành động phòng vệ
-
-Mỗi lớp nên làm ít nhất một việc:
-
-- **Ngăn**: giảm khả năng lỗi xảy ra từ đầu.
-- **Phát hiện**: nhận ra lỗi hoặc tín hiệu nguy hiểm.
-- **Khắc phục**: chuyển sang người thật, dùng câu trả lời dự phòng, hoặc dừng trả lời.
-- **Thông báo**: giúp người dùng hiểu mức tin cậy và rủi ro.
-
-Gợi ý theo mức rủi ro:
-
-| Mức rủi ro | Nên có |
-|---|---|
-| Nhẹ | Ít nhất 1 hành động |
-| Vừa | Ít nhất 2 hành động |
-| Nặng | Ít nhất 3 hành động |
-| Rất nặng / không đảo ngược được | Cố gắng đủ 4 hành động + có người chịu trách nhiệm |
-
-### Kết luận Phần A
-
-**Nguyên nhân gốc**: [...]
-
-**Tầng chính cần sửa**: [...]
-
-**Vì sao cần 3 lớp giải pháp**:
-
-- Lớp giao diện: [...]
-- Lớp chỉ dẫn AI: [...]
-- Lớp kiến trúc dữ liệu: [...]
-
----
-
-## Phần B — Chọn định dạng demo
-
-Mỗi lớp cần một bản demo. Demo giúp biến ý tưởng thành thứ trực quan để nhóm khác xem, kiểm tra và phản biện.
-
-| Lớp | Thư mục | Định dạng demo chọn | Thời gian dự kiến |
+| Lop | Thu muc | Dinh dang demo chon | Thoi gian du kien |
 |---|---|---|---|
-| Giao diện | `1-uiux` | [vẽ tay / Excalidraw / Figma / HTML / ASCII / Mermaid] | __ phút |
-| Chỉ dẫn AI | `2-prompt` | [bản prompt trong Markdown + ví dụ] | __ phút |
-| Kiến trúc dữ liệu | `3-architecture` | [ASCII / Mermaid / sơ đồ hộp-mũi tên] | __ phút |
+| Giao dien | `1-uiux` | ASCII screen + bang state | 12 phut |
+| Chi dan AI | `2-prompt` | Markdown prompt + 3 vi du hoi dap + ket qua thu lai | 10 phut |
+| Kien truc du lieu | `3-architecture` | ASCII architecture + bang thanh phan | 13 phut |
 
-**Lý do chọn demo**
+**Ly do chon demo**
 
-- Giao diện: [...]
-- Chỉ dẫn AI: [...]
-- Kiến trúc dữ liệu: [...]
+- Giao dien: ASCII du de minh hoa claim-level evidence, banner uncertainty, va nut manual review ma khong can dung cong cu design ngoai.
+- Chi dan AI: Markdown ro nhat cho viec xem luat he thong, few-shot, va pass/fail check voi bo test.
+- Kien truc du lieu: ASCII diagram hop voi workflow parse -> extract evidence -> confidence gate -> response builder -> logging.
 
-Gợi ý: có thể dùng AI để dựng nhanh bản nháp demo, nhưng nhóm phải đọc lại và sửa.
+## Phan C - Ba lop giai phap
 
-### Chọn demo theo điều cần chứng minh
+### Lop 1 - Giao dien (`artifact/1-uiux/`)
 
-| Nếu cần chứng minh... | Demo phù hợp |
-|---|---|
-| Người dùng nhìn thấy gì | Sketch, Figma, HTML, ASCII UI |
-| AI được chỉ dẫn thế nào | Bản prompt trong Markdown, ví dụ trả lời |
-| Dữ liệu đi qua đâu | Sơ đồ hộp-mũi tên, ASCII, Mermaid |
-| Quy trình chuyển sang người thật | Sơ đồ quy trình |
+- **Cach tiep can**: Thay summary mot khoi van ban tu tin bang giao dien co claim-level evidence, badge do tin cay, va nut "Review CV goc" / "Chuyen manual review".
+- **Hanh dong phong ve bao phu**: Thong bao + Phat hien + Khac phuc
+- **Demo**: `artifact/1-uiux/demo.md`
+- **Trang thai**: Xong
 
----
-
-## Phần C — Ba lớp giải pháp
-
-Ghi tóm tắt ở đây. Chi tiết nằm trong `card.md` và `demo.*` của từng thư mục.
-
-### Lớp 1 — Giao diện (`artifact/1-uiux/`)
-
-- **Cách tiếp cận**: [...]
-- **Hành động phòng vệ bao phủ**: [Thông báo / Phát hiện / Khắc phục]
-- **Demo**: [...]
-- **Trạng thái**: [Chưa làm / Đang làm / Xong]
-
-Link chi tiết:
+Link chi tiet:
 
 - `artifact/1-uiux/card.md`
-- `artifact/1-uiux/demo.*`
+- `artifact/1-uiux/demo.md`
 
-### Lớp 2 — Chỉ dẫn AI (`artifact/2-prompt/`)
+### Lop 2 - Chi dan AI (`artifact/2-prompt/`)
 
-- **Cách tiếp cận**: [...]
-- **Hành động phòng vệ bao phủ**: [Ngăn / Từ chối / Hỏi lại / Dẫn nguồn]
-- **Demo**: [...]
-- **Trạng thái**: [Chưa làm / Đang làm / Xong]
+- **Cach tiep can**: Bat buoc AI chi duoc viet claim ve ky nang/kinh nghiem khi co evidence span trong CV; neu khong co thi phai noi ro "chua thay bang chung" va/hoac escalate.
+- **Hanh dong phong ve bao phu**: Ngan + Tu choi + Hoi lai + Dan nguon/evidence
+- **Demo**: `artifact/2-prompt/demo.md`
+- **Trang thai**: Xong
 
-Link chi tiết:
+Link chi tiet:
 
 - `artifact/2-prompt/card.md`
 - `artifact/2-prompt/demo.md`
 
-### Lớp 3 — Kiến trúc dữ liệu (`artifact/3-architecture/`)
+### Lop 3 - Kien truc du lieu (`artifact/3-architecture/`)
 
-- **Cách tiếp cận**: [...]
-- **Hành động phòng vệ bao phủ**: [Ngăn / Phát hiện / Khắc phục]
-- **Demo**: [...]
-- **Trạng thái**: [Chưa làm / Đang làm / Xong]
+- **Cach tiep can**: Them pipeline OCR/parser quality check, evidence extraction, confidence gate, va manual-review queue; neu confidence thap thi cam AI de xuat shortlist/reject.
+- **Hanh dong phong ve bao phu**: Ngan + Phat hien + Khac phuc
+- **Demo**: `artifact/3-architecture/demo.md`
+- **Trang thai**: Xong
 
-Link chi tiết:
+Link chi tiet:
 
 - `artifact/3-architecture/card.md`
 - `artifact/3-architecture/demo.md`
 
----
+## Tong kiem tra
 
-## Tổng kiểm tra
-
-| Câu hỏi | Trả lời |
+| Cau hoi | Tra loi |
 |---|---|
-| Rủi ro chính đã chọn là gì? | T-__ |
-| Nguyên nhân gốc là gì? | [...] |
-| 3 lớp giải pháp đã đủ chưa? | Giao diện: __ / Chỉ dẫn AI: __ / Kiến trúc: __ |
-| 4 hành động đã bao phủ chưa? | Ngăn: __ / Phát hiện: __ / Khắc phục: __ / Thông báo: __ |
-| Nhóm khác đã góp ý chưa? | [...] |
-| Nhóm đã sửa gì sau phản biện? | [...] |
+| Rui ro chinh da chon la gi? | T-01 |
+| Nguyen nhan goc la gi? | CV/nguon yeu + model suy dien + UI qua tu tin + thieu confidence gate |
+| 3 lop giai phap da du chua? | Giao dien: Co / Chi dan AI: Co / Kien truc: Co |
+| 4 hanh dong da bao phu chua? | Ngan: Co / Phat hien: Co / Khac phuc: Co / Thong bao: Co |
+| Nhom khac da gop y chua? | Chua, day la ban ca nhan hoa |
+| Da sua gi sau tu phan bien? | Bo sung confidence gate, manual-review queue, va an PII o note share |
 
-## Phản biện chéo: 4 câu phải trả lời
+## Phan bien cheo: 4 cau tra loi ngan
 
-Khi nhóm khác góp ý, hoặc khi nhóm tự rà lại, dùng 4 câu này:
-
-| Góc phản biện | Câu hỏi |
+| Goc phan bien | Tra loi |
 |---|---|
-| Đúng tầng | Giải pháp có sửa đúng nguyên nhân gốc không? |
-| Cụ thể | Demo có đủ rõ để hiểu cách vận hành không? |
-| Đủ lớp | 3 lớp có bổ sung cho nhau không, hay đang lặp cùng một ý? |
-| Tác dụng phụ | Giải pháp có làm chậm, tốn kém, rối giao diện, hoặc gây hiểu nhầm mới không? |
-
-Ghi góp ý cụ thể vào `card.md` hoặc phần tổng kiểm tra. Không ghi chung chung "ổn" hoặc "chưa ổn".
-
-## Gợi ý chia việc
-
-Nhóm 3 người:
-
-- Thành viên A: `artifact/1-uiux/`
-- Thành viên B: `artifact/2-prompt/`
-- Thành viên C: `artifact/3-architecture/`
-
-Nhóm 2 người:
-
-- Một người phụ trách 2 lớp.
-- Người còn lại phụ trách 1 lớp và rà lại 2 lớp kia.
-
-5 phút cuối: cả nhóm đọc chéo 3 lớp, sửa lại bảng tổng kiểm tra, rồi chuẩn bị phản biện chéo.
+| Dung tang | Co. Root cause chinh nam o bang chung du lieu va tendency suy dien, nen architecture + prompt la tang chinh, UI la lop chot |
+| Cu the | Co. Moi lop deu co card va demo ro thanh phan va state |
+| Du lop | Co. UI khong lap lai prompt; prompt khong thay the confidence gate; architecture khong giai quyet trust wording mot minh |
+| Tac dung phu | Co latency, tang friction voi recruiter, va ton cong maintain parser/rubric; da giam bang only-on-risky-case gating va note ngan gon |

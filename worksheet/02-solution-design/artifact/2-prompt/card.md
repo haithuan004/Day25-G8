@@ -1,76 +1,63 @@
 ---
-artifact: 2 — Lớp chỉ dẫn AI
-bai-tap: 2 — Thiết kế giải pháp
+artifact: 2 - Lop chi dan AI
+bai-tap: 2 - Thiet ke giai phap
 demo: ./demo.md
 ---
 
-# card.md — Lớp chỉ dẫn AI
+# card.md - Lop chi dan AI
 
-**Tình huống xử lý**: T-__  
-Xem `../../1-map-and-format.md` Phần A.
+**Tinh huong xu ly**: T-01  
+Xem `../../1-map-and-format.md` Phan A.
 
----
+## 1. Giai phap la gi?
 
-## 1. Giải pháp là gì?
+Them system prompt evidence-bound cho CV Screening Copilot: moi claim ve ky nang, kinh nghiem, so nam, muc do phu hop, hoac de xuat shortlist phai gan voi bang chung tu CV. Neu khong co evidence span, AI phai noi ro "chua thay bang chung" va chuyen sang huong manual review thay vi lap day cho trong.
 
-[Viết 2-3 câu. Nói rõ nhóm sẽ thêm luật, giới hạn hoặc ví dụ mẫu nào để AI trả lời an toàn hơn.]
+## 2. Vi sao sua o lop chi dan AI?
 
-Ví dụ:
+- Model dang co xu huong "huu ich" bang cach suy dien thay vi giu boundary.
+- Recruiter co the gay pressure de AI doan nhanh, nen can luat refusal ro rang.
+- Prompt la noi nhanh nhat de enforce: khi nao tom tat, khi nao canh bao, khi nao tu choi, khi nao escalate.
 
-> Khi người dùng hỏi ngày, số tiền hoặc chính sách tuyển sinh, AI chỉ được trả lời nếu có nguồn chính thức. Nếu thiếu nguồn, AI phải nói rõ là chưa xác minh được và chuyển cho tư vấn viên.
+**Hanh dong phong ve chinh**:
 
----
+- [x] Ngan cau tra loi sai ngay tu dau
+- [x] Bat buoc neu evidence khi noi thong tin quan trong
+- [x] Tu choi tra loi khi thieu can cu
+- [x] Chuyen nguoi that khi vuot pham vi
 
-## 2. Vì sao sửa ở lớp chỉ dẫn AI?
-
-[Chọn 1-2 ý đúng với giải pháp của nhóm.]
-
-- AI đang trả lời quá tự tin khi thiếu nguồn.
-- AI đang chiều theo giả định sai của người dùng.
-- AI cần luật rõ: khi nào trả lời, khi nào từ chối, khi nào chuyển sang người thật.
-- Có thể sửa nhanh bằng prompt trước khi thay đổi hệ thống lớn hơn.
-
-**Hành động phòng vệ chính**:
-
-- [ ] Ngăn câu trả lời sai ngay từ đầu
-- [ ] Bắt buộc nêu nguồn khi nói về thông tin quan trọng
-- [ ] Từ chối trả lời khi thiếu căn cứ
-- [ ] Chuyển người thật khi vượt phạm vi
-
----
-
-## 3. Demo nằm ở đâu?
+## 3. Demo nam o dau?
 
 **File demo**: [`demo.md`](./demo.md)
 
-Demo cần có:
+Demo co:
 
-- Luật chính cho AI
-- Mẫu câu khi thiếu nguồn
-- Mẫu câu khi cần chuyển sang người thật
-- 2-3 ví dụ hỏi đáp để kiểm tra luật
-- Kết quả thử lại với vài tình huống từ Bài 1
+- Luat evidence-bound cho AI
+- Mau cau khi thieu bang chung
+- Mau cau khi can chuyen sang manual review
+- 3 vi du hoi dap
+- Thu lai voi cac case T-01, T-06, T-09
 
----
+## 4. Tac dung phu
 
-## 4. Tác dụng phụ
+**Co the gay van de gi?**
 
-**Có thể gây vấn đề gì?**
+- AI co the than trong qua muc va tra loi "chua chac" nhieu hon, lam recruiter thay cham.
+- Wording co the cung neu prompt dat rule qua cat.
+- Neu khong co architecture ho tro evidence span, prompt don le van co the fail trong mot so truong hop parser rat xau.
 
-[Ví dụ: AI từ chối quá nhiều, câu trả lời cứng, trải nghiệm chậm hơn vì phải kiểm tra nguồn.]
+**Nhom giam van de do bang cach nao?**
 
-**Nhóm giảm vấn đề đó bằng cách nào?**
+- Chi bat buoc evidence rule cho claim screening high-impact, khong bat output nao cung dai dong.
+- Them few-shot mau "refuse mem" de AI van huu ich: de xuat mo CV goc, manual review, hoac yeu cau them file ro hon.
+- Phu hop voi `3-architecture` de prompt nhan duoc metadata confidence va evidence spans that.
 
-[Ví dụ: chỉ bắt buộc nguồn với thông tin rủi ro cao; tách từ chối mềm và từ chối cứng; kiểm tra lại bằng bộ tình huống.]
+## 5. Checklist truoc khi nop
 
----
+- [x] Luat viet du cu the de AI lam theo.
+- [x] Co mau cau khi AI khong co du thong tin.
+- [x] Co vi du cho tinh huong de sai.
+- [x] Co thu lai bang tinh huong trong Bai 1.
+- [x] Khong dung prompt nhu cach duy nhat.
 
-## 5. Checklist trước khi nộp
-
-- [ ] Luật viết đủ cụ thể để AI làm theo.
-- [ ] Có mẫu câu khi AI không có đủ thông tin.
-- [ ] Có ví dụ cho tình huống dễ sai.
-- [ ] Có thử lại bằng tình huống trong Bài 1.
-- [ ] Không dùng prompt như cách duy nhất nếu lỗi nằm ở dữ liệu hoặc quy trình.
-
-**Người phụ trách**: [Tên thành viên]
+**Nguoi phu trach**: Vu Quang Phuc
