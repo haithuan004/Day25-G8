@@ -15,10 +15,10 @@ Lý do: AI không tự nhớ bối cảnh giữa các cuộc trò chuyện. Nế
 
 ## 1. Sản phẩm
 
-- **Tên sản phẩm / bot**: [...]
-- **Sản phẩm giúp ai làm gì**: [...]
-- **Người dùng gặp sản phẩm ở đâu**: [website / ứng dụng / chatbot / kiosk / nội bộ công ty]
-- **Giai đoạn hiện tại**: [chuẩn bị ra mắt / đang thử nghiệm / đã chạy thật]
+- **Tên sản phẩm / bot**: Trợ lý sàng lọc CV và tuyển dụng 
+- **Sản phẩm giúp ai làm gì**: Sàng lọc CV và tuyển dụng AI.
+- **Người dùng gặp sản phẩm ở đâu**: Website
+- **Giai đoạn hiện tại**: Chuẩn bị ra mắt
 
 ---
 
@@ -26,43 +26,50 @@ Lý do: AI không tự nhớ bối cảnh giữa các cuộc trò chuyện. Nế
 
 **AI được làm gì**
 
-- [...]
-- [...]
-- [...]
+- AI sẽ nhận đầu vào là CV của ứng viên và mô tả công việc của nhà tuyển dụng.
+- AI sẽ phân tích CV và mô tả công việc để tìm ra các điểm tương đồng và khác biệt.
+- AI sẽ đưa ra cho nhà tuyển dụng danh sách các ứng viên tiềm năng.
 
 **AI không được làm gì**
 
-- [...]
-- [...]
-- [...]
+- AI không được đưa ra quyết định cuối cùng về việc tuyển dụng.
+- AI không được đưa ra quyết định về việc từ chối hoặc chấp nhận ứng viên.
+- AI không được đưa ra quyết định về việc lương thưởng hoặc phúc lợi.
 
 **Vì sao có giới hạn này**
 
-[Ví dụ: rủi ro pháp lý, an toàn người dùng, quy định ngành, dữ liệu chưa đủ tin cậy.]
+- Đảm bảo quyền riêng tư và bảo mật dữ liệu của ứng viên
+- Đảm bảo tính minh bạch và công bằng của quá trình tuyển dụng
+- Đảm bảo tính chính xác và tin cậy của kết quả sàng lọc
+- Tuân thủ các quy định pháp luật liên quan đến tuyển dụng và lao động
 
 ---
 
 ## 3. Người dùng
 
-- **Là ai**: [tuổi, vai trò, trình độ công nghệ, bối cảnh sử dụng]
-- **Họ hỏi AI khi nào**: [...]
-- **Họ cần quyết định gì sau khi hỏi AI**: [...]
-- **Khi nào họ dễ bị tổn thương / dễ hiểu sai**: [...]
-- **Họ thường tin AI đến mức nào**: [tin ngay / có kiểm tra lại / cần người thật xác nhận]
+- **Là ai**: Nhà tuyển dụng
+- **Họ hỏi AI khi nào**: Khi cần sàng lọc CV và tuyển dụng AI.
+- **Họ cần quyết định gì sau khi hỏi AI**: Danh sách các ứng viên tiềm năng.
+- **Khi nào họ dễ bị tổn thương / dễ hiểu sai**: Khi không có kinh nghiệm sử dụng AI, khi không có kinh nghiệm tuyển dụng, khi không có kinh nghiệm sàng lọc CV, khi không có kinh nghiệm về AI.
+- **Họ thường tin AI đến mức nào**: Cần người thật xác nhận
 
 ---
 
 ## 4. Bối cảnh ngành
 
-- **Sự cố tương tự đã từng xảy ra**: [...]
-- **Quy định hoặc ràng buộc liên quan**: [...]
-- **Nguồn chính thức nên ưu tiên**: [...]
+- **Sự cố tương tự đã từng xảy ra**: AI được dùng cho tuyển sinh 
+- **Quy định hoặc ràng buộc liên quan**: Không có quy định cụ thể về việc sử dụng AI trong tuyển dụng.
+- **Nguồn chính thức nên ưu tiên**: Không có nguồn chính thức cụ thể nào.
 
 ---
 
 ## 5. Ghi chú thêm
 
-[Điền bất kỳ thông tin nào giúp AI hiểu bối cảnh: hạn chót, quy mô nhóm, nguồn dữ liệu, chính sách nội bộ, ví dụ câu hỏi thật.]
+Nguồn dữ liệu:
+- CV của ứng viên:   
+- Mô tả công việc:  
+- Quy định pháp luật: Luật an toàn thông tin mạng
+- Nguồn tài liệu tham khảo: Website VinUni
 
 ---
 
