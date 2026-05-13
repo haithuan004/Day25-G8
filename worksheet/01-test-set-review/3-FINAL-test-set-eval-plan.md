@@ -12,7 +12,7 @@ nop-cuoi: Có — file cuối Bài 1
 ## Thông tin nhóm
 
 - **Chủ đề**: Track 7 — Trợ lý sàng lọc CV và tuyển dụng
-- **Thành viên**: Vũ Quang Phúc, Hồ Hải Thuận, Nguyễn Đức Mạnh, Hoang Quang Thang
+- **Thành viên**: Vũ Quang Phúc, Hồ Hải Thuận, Nguyễn Đức Mạnh, Hoàng Quang Thắng
 - **Ngày**: 2026-05-13
 - **Phiên bản**: v1
 
