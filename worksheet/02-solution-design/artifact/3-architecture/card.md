@@ -1,63 +1,76 @@
 ---
-artifact: 3 - Lop kien truc du lieu
-bai-tap: 2 - Thiet ke giai phap
+artifact: 3 — Lớp kiến trúc dữ liệu
+bai-tap: 2 — Thiết kế giải pháp
 demo: ./demo.md
 ---
 
-# card.md - Lop kien truc du lieu
+# card.md — Lớp kiến trúc dữ liệu
 
-**Tinh huong xu ly**: T-01  
-Xem `../../1-map-and-format.md` Phan A.
+**Tình huống xử lý**: T-__  
+Xem `../../1-map-and-format.md` Phần A.
 
-## 1. Giai phap la gi?
+---
 
-He thong them pipeline `parse -> quality check -> evidence extraction -> confidence gate -> response builder`. AI chi duoc tom tat va dua suggestion screening khi moi claim quan trong deu co evidence spans va confidence du nguong. Neu OCR/parse/link nguon loi, he thong chuyen case vao manual-review queue va log lai de audit.
+## 1. Giải pháp là gì?
 
-## 2. Vi sao sua o lop kien truc du lieu?
+[Viết 2-3 câu. Nói rõ hệ thống cần thêm nguồn dữ liệu, bước kiểm tra, cách chuyển câu hỏi hoặc cách ghi lại lỗi nào.]
 
-- Nguyen nhan chinh cua T-01 nam o cho AI doc du lieu khong day du nhung van phai "tra loi cho xong".
-- Neu khong co evidence spans va confidence gate, prompt/UI rat de bi qua mat.
-- Day la lop co the ngan hallucination ngay tu nguon va tao trace de theo doi sau launch.
+Ví dụ:
 
-**Hanh dong phong ve chinh**:
+> Với câu hỏi về học bổng, hệ thống phải tra nguồn tuyển sinh chính thức trước khi AI trả lời. Nếu nguồn không có dữ liệu hoặc bị lỗi, AI không được đoán mà chuyển câu hỏi cho tư vấn viên.
 
-- [x] Ngan loi bang nguon du lieu dung
-- [x] Phat hien khi nguon thieu hoac loi
-- [x] Khac phuc bang cach chuyen sang nguoi that
-- [x] Ghi lai loi de cai thien sau
+---
 
-## 3. Demo nam o dau?
+## 2. Vì sao sửa ở lớp kiến trúc dữ liệu?
+
+[Chọn 1-2 ý đúng với giải pháp của nhóm.]
+
+- Nguyên nhân chính là thiếu nguồn đúng hoặc nguồn cũ.
+- AI đang phải tự nhớ thông tin thay vì đọc từ nguồn đáng tin cậy.
+- Cần kiểm tra dữ liệu trước khi câu trả lời được tạo ra.
+- Cần ghi lại lỗi để nhóm biết lỗi nào lặp lại nhiều.
+
+**Hành động phòng vệ chính**:
+
+- [ ] Ngăn lỗi bằng nguồn dữ liệu đúng
+- [ ] Phát hiện khi nguồn thiếu hoặc lỗi
+- [ ] Khắc phục bằng cách chuyển sang người thật
+- [ ] Ghi lại lỗi để cải thiện sau
+
+---
+
+## 3. Demo nằm ở đâu?
 
 **File demo**: [`demo.md`](./demo.md)
 
-Demo co:
+Demo cần có:
 
-- So do data flow
-- Parser quality score
-- Evidence store cho tung claim
-- Confidence gate cho screening decision
-- Manual-review queue va audit log
+- Sơ đồ cách dữ liệu đi qua hệ thống
+- Nguồn dữ liệu chính thức
+- Bước kiểm tra trước khi AI trả lời
+- Cách xử lý khi nguồn thiếu, lỗi hoặc quá cũ
+- Cách ghi lại hoặc theo dõi lỗi
 
-## 4. Tac dung phu
+---
 
-**Co the gay van de gi?**
+## 4. Tác dụng phụ
 
-- Tang latency vi can OCR/parse/quality check.
-- Tang do phuc tap he thong va chi phi van hanh.
-- Can co nguoi so huu rubric, threshold, va parser maintenance.
+**Có thể gây vấn đề gì?**
 
-**Nhom giam van de do bang cach nao?**
+[Ví dụ: trả lời chậm hơn, phụ thuộc vào nguồn dữ liệu, tốn công duy trì, hệ thống phức tạp hơn.]
 
-- Chi bat quality gate/man-review cho nhom task high-impact nhu shortlist/reject recommendation.
-- Cache ket qua parse va evidence spans tren candidate version ID.
-- Dinh ky review log fail de chinh parser/rubric thay vi mo rong he thong vo toi va.
+**Nhóm giảm vấn đề đó bằng cách nào?**
 
-## 5. Checklist truoc khi nop
+[Ví dụ: lưu tạm dữ liệu phổ biến, có thông báo khi nguồn lỗi, đặt người phụ trách cập nhật nguồn, giới hạn chỉ áp dụng với câu hỏi rủi ro cao.]
 
-- [x] So do cho thay du lieu di tu dau den dau.
-- [x] Co buoc kiem tra nguon truoc khi AI tra loi.
-- [x] Co cach xu ly khi khong co du lieu.
-- [x] Co cach chuyen sang nguoi that voi tinh huong rui ro cao.
-- [x] Co cach biet loi nay co dang lap lai khong.
+---
 
-**Nguoi phu trach**: Vu Quang Phuc
+## 5. Checklist trước khi nộp
+
+- [ ] Sơ đồ cho thấy dữ liệu đi từ đâu đến đâu.
+- [ ] Có bước kiểm tra nguồn trước khi AI trả lời.
+- [ ] Có cách xử lý khi không có dữ liệu.
+- [ ] Có cách chuyển sang người thật với tình huống rủi ro cao.
+- [ ] Có cách biết lỗi này có đang lặp lại không.
+
+**Người phụ trách**: [Tên thành viên]
